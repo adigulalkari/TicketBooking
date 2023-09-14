@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+    <title>Bookify</title>
+</head>
+<body>
+    <nav>
+        <ul class="container">
+            <li class="logo">Bookify</li>
+            <li><button class="gohome"><a href='{{ url_for("index") }}'>Go home</a></button></li>
+        </ul>
+    </nav>
+    <div class="landing-hero">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alter-dismissable fade show" role="alert">
+                    {{ message[1] }}
+                    <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <form action="/show" method="POST" id="show_form">
+        <div>
+            <label>Show Name:</label>
+            <input type="text" name="show_name" required />
+        </div>
+        <div>
+            <label>Show Rating:</label>
+            <input type="text" name="show_rating" required />
+        </div>
+        <div>
+            <label for="comedy">Comedy</label>
+            <input type="radio" name="show_tags" id="comedy" value="Comedy">
+            <label for="thriller">Thriller</label>
+            <input type="radio" name="show_tags" id="thriller" value="Thriller">
+            <label for="mystery">Mystery</label>
+            <input type="radio" name="show_tags" id="mystery" value="Mystery">
+            <label for="drama">Drama</label>
+            <input type="radio" name="show_tags" id="drama" value="Drama">
+            <label for="scifi">Sci-fi</label>
+            <input type="radio" name="show_tags" id="scifi" value="Sci-fi">
+            <label for="horror">Horror</label>
+            <input type="radio" name="show_tags" id="horror" value="Horror">
+        </div>
+        <div>
+            {% for venue in all_venue %}
+                <label for="{{ venue.venue_name }}">{{ venue.venue_name }}</label>
+                <input type="checkbox" name="venue_name" id="{{ venue.venue_id }}" value="{{ venue.venue_name }}" />
+            {% endfor %}
+        </div>
+        <div>
+            <label>Show Price:</label>
+            <input type="text" name="show_price" required />
+        </div>
+        <div>
+            <input type="submit" value="Submit"id="submitbtn" />
+        </div>
+    </form>
+    <br>
+    <a href="/show-dashboard">Go Back!</a>
+    <div class="footer">
+        <span class="logo">Bookify</span>
+        <div class="msg">Made with ❤️ by Adi.</div>
+    </div>
+</div>
+<!-- the .. represents going one level before in the directory -->
+<script>
+    const sform = document.getElementById('show_form')
+    sform.addEventListener('submit', f=>{
+    f.preventDefault()
+    const formData = new FormData(sform)
+    const data = Object.fromEntries(formData)
+
+    const showTags = document.querySelectorAll('input[name="show_tags"]')
+    showTags.forEach(tag => {
+        if (tag.checked) {
+            data.show_tags = tag.value
+        }
+    })
+
+    const venueNames = document.querySelectorAll('input[name="venue_name"]')
+    data.venue_name = []
+    venueNames.forEach(name => {
+        if (name.checked) {
+            data.venue_name.push(name.value)
+        }
+    })
+
+    console.log(data)
+    fetch('/show', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        // Handle the response from the server
+        console.log(response)
+    })
+})
+</script>
+</body>
+</html>

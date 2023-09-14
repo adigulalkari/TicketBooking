@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+    <title>Bookify</title>
+</head>
+<body>
+    <nav>
+        <ul class="container">
+            <li class="logo">Bookify</li>
+            <li><button class="gohome"><a href='{{ url_for("index") }}'>Go home</a></button></li>
+        </ul>
+    </nav>
+    <div class="landing-hero">
+    <h1>Would you like to login as a...</h1>
+    <button id="selectbtn"><a href="/login-user">Customer</a></button>
+    <button id="selectbtn"><a href="/login-admin">Admin</a></button>
+    <div class="footer">
+        <span class="logo">Bookify</span>
+        <div class="msg">Made with ❤️ by Adi.</div>
+    </div>
+</div>
+</body>
+</html>

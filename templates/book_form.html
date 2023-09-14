@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+    <title>Bookify</title>
+</head>
+<body>
+    <nav>
+        <ul class="container">
+            <li class="logo">Bookify</li>
+            <li><button class="gohome"><a href='{{ url_for("index") }}'>Go home</a></button></li>
+        </ul>
+    </nav>
+    <div class="landing-hero">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alter-dismissable fade show" role="alert">
+                    {{ message[1] }}
+                    <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h1>Book Tickets for {{show.show_name}} at {{venue.venue_name}}</h1>
+    <h2>Price for each ticket is <span id="cost">{{show.show_price}}</span></h2>
+    <form method="POST">
+        <h2>How many Tickets would u like to book?</h2>
+        <input type="number" name="tickets" placeholder="Enter a number" required>
+        <button type="submit" id="submitbtn">Submit</button>
+    </form>
+    <div class="footer">
+        <span class="logo">Bookify</span>
+        <div class="msg">Made with ❤️ by Adi.</div>
+    </div>
+</div>
+</body>
+</html>

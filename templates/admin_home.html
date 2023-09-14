@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookify</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+</head>
+<body>
+    <nav>
+        <ul class="container">
+            <li class="logo">Bookify</li>
+            <li><button class="gohome"><a href='{{ url_for("index") }}'>Go home</a></button></li>
+        </ul>
+    </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alter-dismissable fade show" role="alert">
+                    {{ message[1] }}
+                    <button type="button" class="close" data-dismiss="alert">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="landing-hero">
+        <h1>Hello There!</h1>
+    <br>
+    <h2>Venue Management</h2>
+    <a href="{{ url_for('venue_dashboard') }}">Manage you venues here!</a>
+
+    <br><br>
+    <h2>Show Management</h2>
+    <a href="{{ url_for('show_dashboard') }}">Manage you Shows here!</a>
+    <div class="footer">
+        <span class="logo">Bookify</span>
+        <div class="msg">Made with ❤️ by Adi.</div>
+    </div>
+    </div>
+    
+
+</body>
+</html>

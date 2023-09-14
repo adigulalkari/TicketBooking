@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bookify</title>
+        <link rel="stylesheet" href="/static/styles.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+    
+    </head>
+    <body>
+        <nav>
+            <ul class="container">
+                <li class="logo">Bookify</li>
+                <li><button class="startBtn"><a href='{{ url_for("auth") }}'>Get Started</a></button></li>
+            </ul>
+        </nav>
+        <div class="landing-hero">
+            <div class="heading">
+                <div class="heading-name">Bookify</div>
+                <div class="heading-tagline">Book any Tickets Now!!</div>
+            </div>
+            <div class="contents">
+                <div class="description">
+                    <div class="description-text">Find Current Movies <br>in theaters near you !!</div>
+                    <div class="description-img"><img src="../static/popcorn1.png" alt="Popcorn"></div>
+                </div>
+                <div class="rates">
+                    <div class="rates-img"><img src="../static/cash1.png" alt="cash"></div>
+                    <div class="rates-text">Get the cheapest <br> rates of any show!</div>
+                </div>
+                <button class="book-now"><a href='{{ url_for("login_user") }}'>Book Now</a></button>
+            </div>
+        </div>
+        <div class="footer">
+            <span class="logo">Bookify</span>
+            <div class="msg">Made with ❤️ by Adi.</div>
+        </div>
+    </body>
+</html>
